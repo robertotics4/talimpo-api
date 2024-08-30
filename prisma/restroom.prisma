@@ -8,4 +8,8 @@ model Restroom {
   longitude   Float
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
+
+  reviews Review[]
+
+  @@map("restrooms")
 }

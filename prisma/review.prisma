@@ -1,0 +1,14 @@
+model Review {
+  id         String   @id @default(uuid())
+  userId     String
+  restroomId String
+  rating     Float
+  comment    String?
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  restroom Restroom @relation(fields: [restroomId], references: [id])
+  user     User     @relation(fields: [userId], references: [id])
+
+  @@map("reviews")
+}
