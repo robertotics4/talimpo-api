@@ -16,7 +16,7 @@ describe('AppController', () => {
   });
 
   describe('root', () => {
-    it('should return api informations', () => {
+    it('should return api info', () => {
       const apiInfo: ApiInfo = {
         name,
         author,
