@@ -1,26 +1,21 @@
 import 'module-alias/register';
 import { NestFactory } from '@nestjs/core';
-import { BadRequestException, Logger, ValidationPipe } from '@nestjs/common';
+import { Logger, ValidationPipe } from '@nestjs/common';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { AppModule } from './app/app.module';
+import { GlobalExceptionFilter } from '@app/filters';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   const PORT = process.env.SERVER_PORT;
+
+  app.useGlobalFilters(new GlobalExceptionFilter());
 
   app.useGlobalPipes(
     new ValidationPipe({
       whitelist: true,
       transform: true,
       forbidNonWhitelisted: true,
-      exceptionFactory: (validationErrors = []) => {
-        return new BadRequestException(
-          validationErrors.map((error) => ({
-            field: error.property,
-            errors: Object.values(error.constraints || {}),
-          })),
-        );
-      },
     }),
   );
 
