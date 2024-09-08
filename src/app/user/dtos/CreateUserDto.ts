@@ -29,7 +29,7 @@ export abstract class CreateUserDto {
   @IsString()
   avatarUrl?: string;
 
-  @ApiProperty({ description: 'Senha do usuário', example: '12345678' })
+  @ApiProperty({ description: 'Senha do usuário', example: '$I7REmr6%#ZQ@q}*' })
   @IsStrongPassword()
   password: string;
 }
