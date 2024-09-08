@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { name, author, license, version } from '../package.json';
+import { name, author, license, version } from '../../package.json';
 
 export type ApiInfo = {
   name: string;
