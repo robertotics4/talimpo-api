@@ -1,10 +1,5 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
-import {
-  IsEmail,
-  IsMobilePhone,
-  IsString,
-  IsStrongPassword,
-} from 'class-validator';
+import { IsEmail, IsMobilePhone, IsString } from 'class-validator';
 
 export abstract class CreateUserDto {
   @ApiProperty({ description: 'Nome do usuário', example: 'John Doe' })
@@ -30,6 +25,6 @@ export abstract class CreateUserDto {
   avatarUrl?: string;
 
   @ApiProperty({ description: 'Senha do usuário', example: '$I7REmr6%#ZQ@q}*' })
-  @IsStrongPassword()
+  @IsString()
   password: string;
 }
