@@ -1,16 +1,16 @@
 import { Injectable } from '@nestjs/common';
 import { UnauthorizedException } from '@nestjs/common';
-import { AuthUserDto } from '@app/user/dtos';
 import {
-  AuthData,
-  IAuthUserUseCase,
   UserRepository,
   Encryptor,
   JWT,
+  ISignInUseCase,
+  SignInData,
 } from '@core/domain';
+import { SignInDto } from '@app/session/dtos';
 
 @Injectable()
-export class AuthUserUseCase implements IAuthUserUseCase {
+export class SignInUseCase implements ISignInUseCase {
   private readonly AUTHENTICATION_ERROR_MESSAGE = 'Usuário ou senha inválidos';
 
   constructor(
@@ -19,7 +19,7 @@ export class AuthUserUseCase implements IAuthUserUseCase {
     private readonly jwt: JWT,
   ) {}
 
-  async execute(dto: AuthUserDto): Promise<AuthData> {
+  async execute(dto: SignInDto): Promise<SignInData> {
     const user = await this.userRepository.findOne({ email: dto.email });
 
     if (!user) {

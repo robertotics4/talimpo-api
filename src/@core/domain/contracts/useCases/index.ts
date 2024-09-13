@@ -1,2 +1,2 @@
 export * from './ICreateUserUseCase';
-export * from './IAuthUserUseCase';
+export * from './ISignInUseCase';
