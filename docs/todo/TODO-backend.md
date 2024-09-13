@@ -1,5 +1,6 @@
 **USERS**
 [x] Criação de usuário
+[ ] Validação de email único
 [ ] Autenticação de usuário
 
 **RESTROOM**
