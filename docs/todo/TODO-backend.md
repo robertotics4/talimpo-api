@@ -1,5 +1,6 @@
 **USERS**
 [x] Criação de usuário
+[x] Criptografar a senha do usuário
 [ ] Validação de email único
 [ ] Autenticação de usuário
 

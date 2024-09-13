@@ -1,10 +1,20 @@
 import { CreateUserDto } from '@app/user/dtos';
-import { ICreateUserUseCase, User, UserRepository } from '@core/domain';
+import {
+  Encryptor,
+  ICreateUserUseCase,
+  User,
+  UserRepository,
+} from '@core/domain';
 import { BadRequestException, Injectable } from '@nestjs/common';
 
 @Injectable()
 export class CreateUserUseCase implements ICreateUserUseCase {
-  constructor(private readonly userRepository: UserRepository) {}
+  private readonly ENCRYPT_SALTS = 10;
+
+  constructor(
+    private readonly userRepository: UserRepository,
+    private readonly encryptor: Encryptor,
+  ) {}
 
   async execute(dto: CreateUserDto): Promise<User> {
     const userAlreadyExists = await this.userRepository.findOne({
@@ -15,6 +25,18 @@ export class CreateUserUseCase implements ICreateUserUseCase {
       throw new BadRequestException('E-mail já cadastrado');
     }
 
-    return await this.userRepository.create(dto);
+    const encryptedPassword = await this.encryptor.hash(
+      dto.password,
+      this.ENCRYPT_SALTS,
+    );
+
+    const createdUser = await this.userRepository.create({
+      ...dto,
+      password: encryptedPassword,
+    });
+
+    delete createdUser.password;
+
+    return createdUser;
   }
 }
