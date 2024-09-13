@@ -9,10 +9,6 @@ export class User {
   updatedAt: Date;
 
   constructor(user: Omit<User, 'id' | 'createdAt' | 'updatedAt'>) {
-    this.name = user.name;
-    this.email = user.email;
-    this.phone = user.phone;
-    this.avatarUrl = user.avatarUrl;
-    this.password = user.password;
+    Object.assign(this, user);
   }
 }
