@@ -12,7 +12,9 @@ export class Restroom {
   createdAt: Date;
   updatedAt: Date;
 
-  constructor(restroom: Omit<Restroom, 'id' | 'createdAt' | 'updatedAt'>) {
+  constructor(
+    restroom: Omit<Restroom, 'id' | 'rating' | 'createdAt' | 'updatedAt'>,
+  ) {
     Object.assign(this, restroom);
   }
 }
