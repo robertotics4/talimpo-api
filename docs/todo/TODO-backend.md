@@ -1,8 +1,10 @@
 **USERS**
 [x] Criação de usuário
 [x] Criptografar a senha do usuário
-[ ] Validação de email único
-[ ] Autenticação de usuário
+[x] Validação de email único
+
+**AUTH**
+[x] Autenticação de usuário
 
 **RESTROOM**
 [ ] Criação de banheiro
