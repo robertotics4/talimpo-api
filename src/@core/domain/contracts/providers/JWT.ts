@@ -1,6 +1,6 @@
 import { Jwt, Secret, SignOptions, VerifyOptions } from 'jsonwebtoken';
 
-export abstract class JsonWebToken {
+export abstract class JWT {
   abstract sign(
     payload: string | object | Buffer,
     secretOrPrivateKey: Secret,

@@ -1,2 +1,2 @@
 export * from './Encryptor';
-export * from './JsonWebToken';
+export * from './JWT';

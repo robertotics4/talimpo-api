@@ -1,8 +1,12 @@
 import { Module } from '@nestjs/common';
 import { UserController } from './user.controller';
 import { CreateUserUseCase } from '../../@core/application/useCases/user/CreateUserUseCase';
-import { Encryptor, UserRepository } from '@core/domain';
-import { BCryptEncryptor, PrismaUserRepository } from '@core/infra';
+import { Encryptor, JWT, UserRepository } from '@core/domain';
+import {
+  BCryptEncryptor,
+  JsonWebToken,
+  PrismaUserRepository,
+} from '@core/infra';
 import { AuthUserUseCase } from '@core/application';
 
 @Module({
@@ -18,6 +22,10 @@ import { AuthUserUseCase } from '@core/application';
     {
       provide: Encryptor,
       useClass: BCryptEncryptor,
+    },
+    {
+      provide: JWT,
+      useClass: JsonWebToken,
     },
   ],
 })

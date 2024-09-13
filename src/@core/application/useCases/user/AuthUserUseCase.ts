@@ -1,13 +1,13 @@
+import { Injectable } from '@nestjs/common';
+import { UnauthorizedException } from '@nestjs/common';
 import { AuthUserDto } from '@app/user/dtos';
 import {
   AuthData,
   IAuthUserUseCase,
   UserRepository,
   Encryptor,
-  JsonWebToken,
+  JWT,
 } from '@core/domain';
-import { Injectable } from '@nestjs/common';
-import { UnauthorizedException } from '@nestjs/common';
 
 @Injectable()
 export class AuthUserUseCase implements IAuthUserUseCase {
@@ -16,7 +16,7 @@ export class AuthUserUseCase implements IAuthUserUseCase {
   constructor(
     private readonly userRepository: UserRepository,
     private readonly encryptor: Encryptor,
-    private readonly jsonWebToken: JsonWebToken,
+    private readonly jwt: JWT,
   ) {}
 
   async execute(dto: AuthUserDto): Promise<AuthData> {
@@ -35,16 +35,11 @@ export class AuthUserUseCase implements IAuthUserUseCase {
       throw new UnauthorizedException(this.AUTHENTICATION_ERROR_MESSAGE);
     }
 
-    const tokenExpirationInSeconds =
-      this.jsonWebToken.getTokenExpirationInSeconds();
-    const token = this.jsonWebToken.sign(
-      {},
-      process.env.JWT_HASH_MD5 as string,
-      {
-        subject: user.id.toString(),
-        expiresIn: tokenExpirationInSeconds,
-      },
-    );
+    const tokenExpirationInSeconds = this.jwt.getTokenExpirationInSeconds();
+    const token = this.jwt.sign({}, process.env.JWT_HASH_MD5 as string, {
+      subject: user.id.toString(),
+      expiresIn: tokenExpirationInSeconds,
+    });
 
     return {
       user: { id: user.id, name: user.name },
