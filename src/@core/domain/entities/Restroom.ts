@@ -1,12 +1,10 @@
-import { EstablishmentType } from '../enums';
-
 export class Restroom {
   id: string;
   name: string;
   description?: string;
   isPublic: boolean;
-  rating: 0;
-  establishmentType: EstablishmentType;
+  rating: number;
+  establishmentType: string;
   latitude: number;
   longitude: number;
   createdAt: Date;
