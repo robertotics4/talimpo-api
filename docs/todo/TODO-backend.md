@@ -9,7 +9,7 @@
 **RESTROOM**
 [x] Criação de banheiro
 [ ] Validação de área para criação de banheiro (mínimo de 20m de distância)
-[ ] Listar banheiros
+[x] Listar banheiros
 [ ] Cálculo de score
 
 **REVIEW**
