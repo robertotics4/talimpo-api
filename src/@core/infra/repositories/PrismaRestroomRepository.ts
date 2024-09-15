@@ -8,6 +8,10 @@ export class PrismaRestroomRepository implements RestroomRepository {
 
   constructor(private readonly prismaService: PrismaService) {}
 
+  async find(): Promise<Restroom[]> {
+    return await this.prismaService.restroom.findMany({});
+  }
+
   async create(
     data: Omit<Restroom, 'id' | 'rating' | 'createdAt' | 'updatedAt'>,
   ): Promise<Restroom> {
