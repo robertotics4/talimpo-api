@@ -1,5 +1,4 @@
 import { Module } from '@nestjs/common';
-import { SessionController } from './session.controller';
 import { SignInUseCase } from '@core/application';
 import { Encryptor, JWT, UserRepository } from '@core/domain';
 import {
@@ -7,10 +6,12 @@ import {
   JsonWebToken,
   PrismaUserRepository,
 } from '@core/infra';
+import { AuthController } from './auth.controller';
+import { UserModule } from '@app/user/user.module';
 
 @Module({
-  imports: [],
-  controllers: [SessionController],
+  imports: [UserModule],
+  controllers: [AuthController],
   providers: [
     SignInUseCase,
     {
@@ -27,4 +28,4 @@ import {
     },
   ],
 })
-export class SessionModule {}
+export class AuthModule {}

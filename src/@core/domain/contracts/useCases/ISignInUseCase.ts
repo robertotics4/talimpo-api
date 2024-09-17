@@ -1,4 +1,4 @@
-import { SignInDto } from '@app/session/dtos';
+import { SignInDto } from '@app/auth/dtos';
 
 export type SignInData = {
   user: {

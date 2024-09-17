@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
-import { RestroomRepository } from '@core/domain';
+import { RestroomRepository, UserRepository } from '@core/domain';
 import { RestroomController } from './restroom.controller';
-import { PrismaRestroomRepository } from '@core/infra';
+import { PrismaRestroomRepository, PrismaUserRepository } from '@core/infra';
 import { CreateRestroomUseCase, FindRestroomsUseCase } from '@core/application';
 
 @Module({
@@ -13,6 +13,11 @@ import { CreateRestroomUseCase, FindRestroomsUseCase } from '@core/application';
     {
       provide: RestroomRepository,
       useClass: PrismaRestroomRepository,
+    },
+
+    {
+      provide: UserRepository,
+      useClass: PrismaUserRepository,
     },
   ],
 })

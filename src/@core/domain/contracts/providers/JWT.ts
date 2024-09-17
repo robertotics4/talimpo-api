@@ -10,7 +10,7 @@ export abstract class JWT {
   abstract verify(
     token: string,
     secretOrPublicKey: Secret,
-    options: VerifyOptions & {
+    options?: VerifyOptions & {
       complete: true;
     },
   ): Jwt;

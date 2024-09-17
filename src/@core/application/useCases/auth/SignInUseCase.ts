@@ -7,7 +7,7 @@ import {
   ISignInUseCase,
   SignInData,
 } from '@core/domain';
-import { SignInDto } from '@app/session/dtos';
+import { SignInDto } from '@app/auth/dtos';
 
 @Injectable()
 export class SignInUseCase implements ISignInUseCase {

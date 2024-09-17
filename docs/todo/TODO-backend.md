@@ -14,5 +14,4 @@
 [ ] Cálculo de score
 
 **REVIEW**
-[ ] Avaliação de banheiro
-[ ] Comentários no banheiro
+[x] Avaliação de banheiro
