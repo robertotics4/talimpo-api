@@ -5,6 +5,7 @@
 
 **AUTH**
 [x] Autenticação de usuário
+[ ] Adicionar segurança nas rotas
 
 **RESTROOM**
 [x] Criação de banheiro
